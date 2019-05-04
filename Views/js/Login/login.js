@@ -116,7 +116,7 @@ function local() {
     var sql = "call Usuarios_Login('" + id + "', '" + passc + "');";
     con.query(sql, function (err, results) {
         numRows = results[0].length;
-        debugger
+        //debugger
         if (numRows > 0) {
             if (results[0].estado_usuario == 2) {
                 $("#btns").html("<center><input data-dismiss='modal' aria-label='Close' class='btn btn-primary m-r-1em' value='Aceptar'/></center>");
@@ -159,10 +159,10 @@ function BuscarSedeInfo() {
 
     var sql = "call Sedes_GetXNom('" + nomsede + "');";
     con.query(sql, function (err, results) {
-       debugger
+       //debugger
         numRows = results[0].length;
         if (numRows > 0) {
-      //      debugger
+            //debugger
             var idsed = results[0][0].id_sede;
             var nitsede = results[0][0].nit_sede;
             var nomsed = results[0][0].nom_sede;
@@ -182,7 +182,7 @@ function BuscarSedeInfo() {
 }
 
 function sesionUs(idus, nomus, apeus, tipus) {
-
+//debugger
     localStorage.setItem("ses_estado", "ShakeItDesk");
     localStorage.setItem("id_user", idus);
     localStorage.setItem("nom_user", nomus + " " + apeus);
@@ -191,7 +191,7 @@ function sesionUs(idus, nomus, apeus, tipus) {
 }
 
 function sesionSede(idsed, nitsede, nomsed, dirsede, munsedeid, munsede, depsedeid, depsede, telsede, whatsede, idensed) {
-
+//debugger
     localStorage.setItem("id_sede", idsed);
     localStorage.setItem("nit_sede", nitsede);
     localStorage.setItem("nom_sede", nomsed);

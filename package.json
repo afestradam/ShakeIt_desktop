@@ -44,6 +44,7 @@
   },
   "dependencies": {
     "electron-log": "^3.0.5",
+    "escpos": "^2.4.11",
     "mysql": "^2.17.1",
     "mysql-backup": "^1.0.0",
     "mysql-import": "^2.0.2",

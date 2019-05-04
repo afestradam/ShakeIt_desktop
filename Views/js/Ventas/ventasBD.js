@@ -1,15 +1,8 @@
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-var fecha = new Date();
-var NumeroVenta = localStorage.getItem('Venta_Num');
-var anio = fecha.getYear() - 100;
-var mes = fecha.getMonth() + 1;
-var dia = fecha.getDate();
-
 
 //Gets
 
@@ -18,7 +11,7 @@ function botones() {
     var sql = "call Categorias_GetPrincipales();"
     con.query(sql, function (err, results, fields) {
         numRows = results[0].length;
-    
+
         if (numRows > 0) {
             results[0].forEach(function (element) {
                 $('#divcat').append('<a href="javascript: getdatacat(' + element.idcategoria + ",'" + element.nomcategoria + "'" + ')" class="btn btn_v">' + element.nomcategoria + '</a>');
@@ -35,7 +28,7 @@ function botones() {
 }
 
 function milkshakes() {
-    
+
     var sql = "call Categorias_GetSecundarias();"
     $('#divmilk').html("");
     con.query(sql, function (err, results, fields) {
@@ -55,7 +48,7 @@ function milkshakes() {
 }
 
 function getdatacat(id, nom) {
-    
+
     var sql = "call Productos_GetXCategoria(" + id + ");";
     $('#s-productos').html('<option value="">Seeccione ' + nom + '</option>');
     if (id == 7 || id == 1 || id == 3 || id == 5 || id == 6 || id == 10) {
@@ -87,7 +80,7 @@ function getdataprod() {
     var sql = "call Productos_getXid(" + id + ");";
     con.query(sql, function (err, results, fields) {
         numRows = results[0].length;
-        
+
         if (numRows > 0) {
             $('#s-precio').val(results[0][0].precio_producto);
             $('#s-cantidad').val(1);
@@ -106,7 +99,7 @@ function get_consumos() {
     var sql = "call Consumo_Get();";
     con.query(sql, function (err, results, fields) {
         numRows = results[0].length;
-        
+
         if (numRows > 0) {
             results[0].forEach(function (element) {
                 $('#combo_consumo').append('<option value="' + element.id_consumo + '">' + element.nom_consumo + '</option>');
@@ -118,7 +111,7 @@ function get_consumos() {
 //Resta de Inventario.
 
 function update_restarInsumosS() {//Online
-    
+
     var datos = RecorrerProductos();
 
     INFO = new FormData();
@@ -168,7 +161,7 @@ function update_restarInsumosS() {//Online
 }
 
 function RecorrerProductoRI() { //Offline
-    
+
     var datos = RecorrerProductos();
     var cont = 0;
     datos.forEach(function (element) {
@@ -216,7 +209,7 @@ function get_InsumosXProd(id, cant, sede) {
 }
 
 function update_RestarInventarioXProd(ins, cant, cantp, sede) {
-    
+
     var cont = 0;
     var sql = "call Inventario_RestarCant('" + ins + "', '" + cant + "', '" + cantp + "', '" + sede + "');";
     con.query(sql, function (err, results, fields) {
@@ -502,7 +495,7 @@ function insert_VentaS() {
 }
 
 function insert_Venta(web) {
-    
+
     var cont = 0;
     var cant = TotalCantidad();
     var fac = localStorage.getItem("iden_sede") + anio + mes + dia + "-" + NumeroVenta;
@@ -527,6 +520,7 @@ function insert_Venta(web) {
         return false;
     } else {
         localStorage.setItem('Paso_Venta', 8);
+        print();
         return true;
     }
 }

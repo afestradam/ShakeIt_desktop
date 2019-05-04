@@ -1,7 +1,11 @@
 var fecha = new Date();
 var anio = fecha.getYear() - 100;
+var anioC = anio + 2000;
 var mes = fecha.getMonth() + 1;
 var dia = fecha.getDate();
+var fechaAhora = anio+"-"+mes+"-"+dia;
+var fechaLocal = localStorage.getItem("backupDete");
+var NumeroVenta = localStorage.getItem('Venta_Num');
 var base = 'http://localhost/';
 var baseRem = 'http://shakeitcol.co/';
 

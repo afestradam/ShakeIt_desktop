@@ -17,13 +17,13 @@ function agregar() {
                 var desc = $('#s-descuento').val() / 100;
                 var vdesc = vtot * desc;
                 vtot = vtot - vdesc;
-                $("#s-resumen").append("<tr id='fil" + id + "' name='" + id + "' data-prod='" + id + "' data-cant='" + cant + "' data-desc='" + desc + "'><td>" + id + "</td><td>" + nom + " - Descuento del " + $('#s-descuento').val() + "%" + "</td><td>" + cant + "</td><td>" + cat + "</td><td id='valor_car'>" + vuni + "</td><td id='valor_car'>" + vtot + "</td><td><input type='button' class='btn btn-primary' id='lessitem' value='Eliminar' onclick='removef(" + id + "," + vtot + ")'></td></tr>");
+                $("#s-resumen").append("<tr id='fil" + id + "' name='" + id + "' data-prod='" + id + "' data-prodnom='" + nom + "' data-cant='" + cant + "' data-prodtot='" + vtot + "' data-desc='" + desc + "'><td>" + id + "</td><td>" + nom + " - Descuento del " + $('#s-descuento').val() + "%" + "</td><td>" + cant + "</td><td>" + cat + "</td><td id='valor_car'>" + vuni + "</td><td id='valor_car'>" + vtot + "</td><td><input type='button' class='btn btn-primary' id='lessitem' value='Eliminar' onclick='removef(" + id + "," + vtot + ")'></td></tr>");
                 $("#s-div-idescuento-sub").remove();
                 $("#s-btn-descuento").addClass('btn-info');
                 $("#s-btn-descuento").removeClass('btn-light');
             } else {
 
-                $("#s-resumen").append("<tr id='fil" + id + "' name='" + id + "' data-prod='" + id + "' data-cant='" + cant + "' data-desc='0'><td>" + id + "</td><td>" + nom + "</td><td>" + cant + "</td><td>" + cat + "</td><td id='valor_car'>" + vuni + "</td><td id='valor_car'>" + vtot + "</td><td><input type='button' class='btn btn-primary' id='lessitem' value='Eliminar' onclick='removef(" + id + "," + vtot + ")'></td></tr>");
+                $("#s-resumen").append("<tr id='fil" + id + "' name='" + id + "' data-prod='" + id + "' data-prodnom='" + nom + "' data-cant='" + cant + "' data-prodtot='" + vtot + "' data-desc='0'><td>" + id + "</td><td>" + nom + "</td><td>" + cant + "</td><td>" + cat + "</td><td id='valor_car'>" + vuni + "</td><td id='valor_car'>" + vtot + "</td><td><input type='button' class='btn btn-primary' id='lessitem' value='Eliminar' onclick='removef(" + id + "," + vtot + ")'></td></tr>");
             }
             var tot = parseFloat($("#s-subtotal").val());
             var valp = parseFloat(vtot);
