@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Shake It Desktop - Ventas</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="Recursos/headers.js" type="text/javascript"></script>
+        <script src="js/Ventas/ventasBD.js" type="text/javascript"></script>
+        <script src="js/Comunes/comunesBD.js" type="text/javascript"></script>
+        <script src="js/Ventas/ventas.js" type="text/javascript"></script>
+        <script src="js/Ventas/imprimir.js" type="text/javascript"></script>
+    </head>
+    <body class="container-fluid">
+        <section id="BotonesCat" class="container-fluid col" style="height: 150px;">
+            <div class="row">
+                <div id='divcat' class="col">
+                </div>
+            </div>
+            <div class="row">
+                <div id='divmilk' class="col" style="display: none;">
+                </div>
+            </div>
+        </section>
+        <section id="sleft" class="row container-fluid">
+            <section class="col-md-3">              
+                <div class="form-group">
+                    <select id="s-productos" class="form-control custom-select my-1 mr-sm-2" campo="Producto" name="gventa" onchange="getdataprod()">
+                        <option value="">Seeccione una categoría</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="s-precio">Precio</label>
+                    <input type="number" class="form-control" id="s-precio" placeholder="Precio" campo="Precio" name="gventa" value="0" disabled="">
+                </div>
+                <div class="form-group">
+                    <label for="s-precio">Cantidad</label>
+                    <input type="number" class="form-control" id="s-cantidad" placeholder="Cantidad" campo="Cantidad" name="gventa" value="0">
+                </div>
+                <div class="form-group">
+                    <label for="s-precio">Subtotal</label>
+                    <input type="number" class="form-control" id="s-subtotal" placeholder="Subtotal" campo="Subtotal" name="gventa" value="0" disabled="">
+                </div>
+                <button type="button" class="btn btn-primary btn-lg btn-block" onclick="finalizarVenta()">Finalizar</button>
+            </section>
+            <section class="col-md-2">              
+                <button type="button" class="btn btn-primary btn-lg btn-block" onclick="agregar()">Agregar</button>
+                <button type="button" class="btn btn-primary btn-lg btn-block" onclick="agregar_Regalo()">Regalo</button>
+                <button id="s-btn-descuento" type="button" class="btn btn-info btn-lg btn-block" onclick="btndescuento()">Descuento</button>
+                <div class="form-group" id="s-div-idescuento">
+                </div>
+            </section> 
+            <section class="col-md-7">              
+                <div class="table-responsive-sm" style="overflow-y: auto; height: 500px; width: auto;">
+                    <table id="tabVentas" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">Categoría</th>
+                                <th scope="col">V. Unitario</th>
+                                <th scope="col">V. Total</th>
+                                <th scope="col">-</th>
+                            </tr>
+                        </thead>
+                        <tbody id="s-resumen">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </section>
+        <section id="sright" class="col">
+
+        </section>        
+        <!---------------------------Modal Alerta--------------------------------------------------------------------->
+        <div class="modal fade bd-example-modal-lg" id="modal_msg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <p class="modal-title" style="font-weight: bold;">Alerta</p>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="msg">
+                    </div>
+                    <center>
+                        <div class="modal-footer" id="btns">
+                        </div>
+                    </center>
+                </div>
+            </div>
+        </div>
+
+        <!---------------------------Modal Confirmar--------------------------------------------------------------------->
+        <div class="modal fade bd-example-modal-lg" id="modal_Confirmar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <p class="modal-title" style="fo nt-weight: bold;">Confirmar Venta</p>
+                    </div>
+                    <div class="modal-body" id="confirmav">
+                        <div id="msg_alert_mod" class="alert alert-dark" role="alert" style="display: none;">
+                        </div>
+                        <div class="form-group bordersconf">
+                            <label>Total Venta</label>
+                            <center>
+                                <h1 id="vtotalh1"></h1>
+                            </center>
+                        </div>
+                        <div class="form-group bordersconf">
+                            <label>Consumo</label>
+                            <center>
+                                <select class="form-control form-control-lg" name="conf_v" campo="Consumo" onchange="removec(this), consumo()" id="combo_consumo">
+                                    <option>Seleccione Consumo</option>
+                                </select>
+                            </center>
+                        </div>
+                        <form class="form-group bordersconf backText" id="cli_form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="cli_nom" name="cli_v" campo="Nombre de cliente" placeholder="Nombre Del Cliente" onchange="removec(this)">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="cli_ape" name="cli_v" campo="Apellido de cliente" placeholder="Apellido Del Cliente" onchange="removec(this)">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="cli_dir" name="cli_v" campo="Dirección de cliente" placeholder="Dirección Del Cliente" onchange="removec(this)">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="cli_barr" name="cli_v" campo="Berrio de dirección" placeholder="Barrio De La Dirección" onchange="removec(this)">
+                            </div>
+                            <div class="form-group">   
+                                 <select class="form-control" id="cli_dep" name="cli_v" campo="Departamento" onchange="Get_MunicipioSel('#cli_mun', this)">
+                                    <option>Elegir Departamento</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                 <select class="form-control" id="cli_mun" name="cli_v" campo="Municipio">
+                                    <option>Elegir Municipio</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="number" class="form-control" id="cli_tel" name="cli_v" campo="Teléfono del cliente" placeholder="Teléfono del cliente" onchange="removec(this)">
+                            </div>
+                        </form>
+                        <div class="form-group bordersconf">
+                            <label>Medio De Pago</label>
+                            <center>
+                                <button type="button" id="mEfectivo" class="btn btn-primary btn-sm" onclick="medioEfectivo()" >Efectivo</button>
+                                <button type="button" id="mElectronico" class="btn btn-primary btn-sm" onclick="medioEelectronico()">Eectrónico</button>
+                                <hr>
+                                <input type="number" class="form-control backText" name="conf_v" campo="Medio de pago" onchange="removec(this)" id="input_mediopago" placeholder="" value="0" disabled>
+                                <div class="form-group bordersconf backText" id="div_entidad">
+                                    <label>Entidad</label>
+                                    <center>
+                                        <select class="form-control form-control-lg" name="conf_v" campo="Entidad" onchange="removec(this)" id="combo_entidad">
+                                            <option>Seleccione Entidad</option>
+                                        </select>
+                                    </center>
+                                </div>
+                                <input type="number" class="form-control" name="conf_v" campo="Dinero recibido" onchange="removec(this)" id="dinero_recibido" placeholder="Dinero Recibido" onchange="validaDinero()" disabled>
+                                <p style="color: red; display: none;" id="msg_dinrec"></p>
+                            </center>
+                        </div>
+                        <div class="form-group bordersconf" style="display: none;">
+                            <label>Cambio</label>
+                            <center>
+                                <h1 id="vcambioh1a">0</h1>
+                            </center>
+                        </div>
+                    </div>
+                    <div class="modal-body" id="finalizav" style="display: none;">
+                        <div class="form-group bordersconf">
+                            <h4>Venta´Éxitosa</h4>
+                            <hr>
+                            <label>Cambio</label>
+                            <hr>
+                            <center>
+                                <h1 id="vcambioh1">0</h1>
+                            </center>
+                        </div>
+                    </div>
+                    <div class="modal-body" id="procesandov" style="display: none;">
+                        <div class="form-group bordersconf">
+                            <center>
+                                <img src="media/procesando.gif" alt=""/>
+                                <h6>Procesando</h6>
+                            </center>
+                        </div>
+                    </div>
+                    <center>
+                        <div class="modal-footer" id="con_btns">
+
+                        </div>
+                    </center>
+                </div>
+            </div>  
+        </div>
+    </body>
+</html>

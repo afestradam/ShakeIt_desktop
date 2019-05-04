@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="Recursos/headers.js" type="text/javascript"></script>
+        <script src="js/Comunes/comunesBD.js" type="text/javascript"></script>
+        <script src="js/Caja/cajaBD.js" type="text/javascript"></script>
+        <script src="js/Reportes/reportesBD.js" type="text/javascript"></script>
+        <script src="js/Caja/caja.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <div>
+            <ul class="nav justify-content-end optionsBar">
+                <li class="nav-item">
+                    <a class="nav-link" href="inicio.html">Salir</a>
+                </li>
+            </ul>
+            <br>
+            <br>
+        </div>
+        <div class="container backText" id="abrirCaja">
+            <center>
+                <h4>ABRIR CAJA</h4>    
+            </center>
+            <hr>
+            <br>
+            <form>
+                <div id="msg_alert_modG" class="alert alert-dark" role="alert" style="display: none;">
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <label for="formGroupExampleInput">Dinero En Caja</label>
+                        <input type="number" class="form-control" value="0" disabled="" id="caja_din" name="caja_ap" campo="Dinero en caja" onchange="removec(this)" placeholder="Dinero en caja">
+                    </div>
+                    <div class="col">
+                        <label for="formGroupExampleInput">Dinero A Ingresar</label>
+                        <input type="number" class="form-control" placeholder="Dinero a ingresar" id="caja_ing" name="caja_ap" campo="Dinero a ingresar" onchange="removec(this)">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <label for="formGroupExampleInput">Id De Inventario</label>
+                        <input type="text" class="form-control" id="caja_idinv" name="caja_ap" campo="Id de inventario" onchange="removec(this), Verificar_IdInventario(this)" placeholder="Id de inventario">
+                    </div>
+                </div>
+                <br>
+                <hr>
+                <div class="nav justify-content-end">
+                    <a class="btn btn_sh_normal" href="javascript: AbrirCaja()" role="button">Guardar</a>
+                </div>
+            </form>
+        </div>
+        <div class="container backText" id="cerrarCaja">
+            <center>
+                <h4>CERRAR CAJA</h4>    
+            </center>
+            <hr>
+            <br>
+            <form>
+                <div id="msg_alert_mod" class="alert alert-dark" role="alert" style="display: none;">
+                </div>
+                <div class="form-row">
+                    <div class="col  backText">
+                        <label for="formGroupExampleInput">Dinero En Caja</label>
+                        <input type="number" class="form-control" value="0" disabled="" id="caja_dincaux" name="caja_ce" campo="Dinero en caja" onchange="removec(this)" placeholder="Dinero en caja">
+                    </div>
+                    <div class="col">
+                        <label for="formGroupExampleInput">Dinero En Caja</label>
+                        <input type="number" class="form-control" value="0" disabled="" id="caja_dinc" name="caja_ce" campo="Dinero en caja" onchange="removec(this)" placeholder="Dinero en caja">
+                    </div>
+                    <div class="col">
+                        <label for="formGroupExampleInput">Ventas Totales</label>
+                        <input type="number" class="form-control" value="0" disabled="" id="caja_ventasc" name="caja_ce" campo="Ventas Totales" onchange="removec(this)" placeholder="Ventas Totales">
+                    </div>
+
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <label for="formGroupExampleInput">Dinero A Retirar</label>
+                        <input type="number" class="form-control" placeholder="Dinero a retirar" id="caja_ret" name="caja_ce" campo="Dinero a retirar" onchange="removec(this)" onkeyup="CalcularCaja()">
+                    </div>
+                    <div class="col">
+                        <label for="formGroupExampleInput">Id De Inventario</label>
+                        <input type="text" class="form-control" id="caja_idinvc" name="caja_ce" campo="Id de inventario" onchange="removec(this), Verificar_IdInventario(this)" placeholder="Id de inventario">
+                    </div>
+                </div>
+                <br>
+                <hr>
+                <div class="nav justify-content-end">
+                    <a class="btn btn_sh_normal" href="javascript: CerrarCaja()" role="button">Guardar</a>
+                </div>
+            </form>
+        </div>
+
+        <!---------------------------Modal Mensaje----------------------------->
+        <div class="modal fade bd-example-modal-lg" id="modal_msg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <p class="modal-title" style="font-weight: bold;">Alerta</p>
+                    </div>
+                    <div class="modal-body" id="msg">
+                    </div>
+                    <center>
+                        <div class="modal-footer" id="btns">
+                        </div>
+                    </center>
+                </div>
+            </div>
+        </div>
+
+
+    </body>
+</html>

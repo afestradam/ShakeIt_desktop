@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <script>
+            function menu() {
+
+                //alert($("#menupan").position().left);
+                //alert($(window).width());
+
+                var panpos = $(window).width();
+
+                if ($("#menupan").position().left >= panpos) {
+                    $("#menupan").animate({left: '50%'});
+                } else {
+                    $("#menupan").animate({left: '100%'});
+
+                }
+
+            }
+        </script>
+    </head>
+    <body>
+        <nav class="navbar navbar-light" style="background-color: #f8d7da;" id="navi">
+            <div class="row">
+                <div class="col-4">
+                    <a href="#">
+                        <img src="media/logo.png" alt="" style=" height: auto; width: 100%"/>
+                    </a>
+                </div>
+            </div>
+            <div class="nav justify-content-end">
+                <a href="javascript: menu()">
+                    <button class="btn" style="background-color: #f8d7da; border: #f8d7da solid 2;" >
+                        <i style="font-size:20px;color:white;" class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                    </button>                
+                </a>
+            </div>
+        </nav>
+        <div class="" id="menupan" style="background-color: #f8d7da; width: 90%; height: 100%; position: fixed; z-index: 10; opacity: 1; left: 100%; box-shadow: 1px 1px 1px 1px gray; display:;">
+            <br>
+            <br>
+            <br>
+            <a class="anav nav-item nav-link" href="javascript: sobreff()">INICIO</a>
+            <a class="anav nav-item nav-link" href="javascript: concursos()">QUIENES SOMOS</a>
+            <a class="anav nav-item nav-link" href="javascript: programacion()">NUESTRO MENÚ</a>
+            <a class="anav nav-item nav-link" href="javascript: entradas()">PROMOCIONES</a>
+            <a class="anav nav-item nav-link" href="javascript: stands()">GALERÍA</a>
+            <a class="anav nav-item nav-link" href="javascript: contacto()">CONTÁCTENOS</a>
+        </div>
+
+        <div class="modal fade bd-example-modal-lg" id="modal_msg" tabindex="2" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <p class="modal-title" style="font-weight: bold;">Alerta</p>
+                    </div>
+                    <div class="modal-body" id="msg"></div>
+                    <div class="modal-footer" id="btns"></div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
