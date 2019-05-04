@@ -41,6 +41,16 @@ function createDatabase() {
   });
 }
 
+function dropTables() {
+
+  var sql = "DROP TABLE IF EXISTS caja, categorias, consumo, departamentos, entidadespago, estados_generales, insumos, insumos_rel, inventario, medio_pago, movimientos_concepto, movimientos_tipo, municipios, productos, sedes, unidades, usuarios, usuarios_tipo;";
+  con.query(sql, function(err, result) {
+    if (err) {
+      alert('Error al borrar tablas.')
+    }
+  });
+}
+
 function RemoteBackUp() {
 
   $("#msg").html('<center>\n\
@@ -76,7 +86,7 @@ function createRemoteBackUp() {
   $("#msg").html('<center>\n\
   <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">\n\
   <span class="sr-only">Loading...</span>\n\
-  </div></center>');
+  </div><br><br><h5>Obteniendo datos remotos</h5></center>');
 
   $("#modal_msg").modal({
     backdrop: 'static',
@@ -94,25 +104,34 @@ function createRemoteBackUp() {
       password: 'Usuario01',
       database: 'shakei_shakeit_prod',
     },
-    dump:{
-      tables: ['caja', 'categorias', ''],
+    dump: {
+      tables: ['caja', 'categorias', 'consumo', 'departamentos', 'entidadespago', 'estados_generales', 'insumos', 'insumos_rel', 'inventario', 'medio_pago', 'movimientos_concepto', 'movimientos_tipo', 'municipios', 'productos', 'sedes', 'unidades', 'usuarios', 'usuarios_tipo'],
     },
     dumpToFile: 'C:/SoftanSol/Shake_It/Saves/Bin/Backups/backUpR.sql',
-    }).then(dump => {
-      $("#modal_msg").modal('hide');
-    })
+  }).then(dump => {
+    restoreBackUp();
+  })
 
-  }
+}
 
-  function restoreBackUp() {
+function restoreBackUp() {
 
-    require('mysql-import').config({
-      host: 'localhost',
-      user: 'root',
-      password: 'root',
-      database: 'shakeitdata_loc',
-      onerror: err => alert(err.message)
-    }).import('C:/SoftanSol/Shake_It/Saves/Bin/Backups/backUpR.sql').then(() => {
-      alert('Base de datos restaurada.')
-    });
+  dropTables();
 
+  $("#msg").html('<center>\n\
+    <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">\n\
+    <span class="sr-only">Loading...</span>\n\
+    </div><br><br><h5>Guardando datos locales</h5></center>');
+
+  require('mysql-import').config({
+    host: 'localhost',
+    user: 'root',
+    password: 'root',
+    database: 'shakeitdata_loc',
+    onerror: err => alert(err.message)
+  }).import('C:/SoftanSol/Shake_It/Saves/Bin/Backups/backUpR.sql').then(() => {
+    $("#modal_msg").modal('hide');
+    validaLicencia();
+  });
+
+}
