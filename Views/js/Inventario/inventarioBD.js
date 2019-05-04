@@ -56,7 +56,7 @@ function Get_Inventaio() {
 }
 
 function update_inventario() {
-    
+
     var id = $("#inv_ide").val();
     var ins = $("#inv_inse").val();
     var cant = $("#inv_cante").val();
@@ -228,6 +228,7 @@ function insert_inventarioS(ins, cant, sed) {
         data: inventario,
         dataType: 'json',
         success: function (response) {
+          
             if (response.Respuesta != 0) {
                 $('#inv_mod_guardar').modal('hide')
                 $("#btns").html("<a class='btn btn-danger btn-sm' href='javascript: Get_Inventaio()' role='button'>Aceptar</a>");

@@ -32,14 +32,17 @@ function ProductosPrint() {
 }
 
 function print() {
-
+  debugger
   var telefonos = localStorage.getItem('tel_sede') + " - " + localStorage.getItem('what_sede')
   var fechaF = dia + "-" + mes + "-" + anioC;
   var fac = localStorage.getItem("iden_sede") + anio + mes + dia + "-" + NumeroVenta
+  var consumo = $('#combo_consumo').val();
+  var cambioVal = parseInt($('#dinero_recibido').val()) - parseInt($('#s-subtotal').val())
   var productos = ProductosPrint();
 
-  device.open(function() {
 
+  device.open(function() {
+debugger
       printer
         .font('a')
         .align('ct')
@@ -58,12 +61,32 @@ function print() {
         .text('Ticket N°: ' + fac)
         .text(' ')
         .text(' ')
-
+        .align('ct')
       productos.forEach(function(element) {
 
         .text(element.nom + " " + element.cant + " " + element.tot)
 
       });
+      .text(' ')
+        .align('lt')
+      if ($('#combo_entidad').val() != 5) {
+        .text('Medio Pago: Electrónivo ' + $("#combo_entidad option:selected").text())
+      } else {
+        .text('Medio Pago: ' + $("#combo_entidad option:selected").text())
+      }
+      .text('Total: ' + $("#s-subtotal").val())
+        .text('Dinero Recibido: ' + $("#dinero_recibido").val())
+        .text('Cambio: ' + cambioVal)
+        .text(' ')
+      if (consumo == 1) {
+        .align('ct')
+          .text('-------DOMICILIO-------')
+          .align('lt')
+          .text($('#cli_nom').val() + " " + $('#cli_ape').val())
+          .text($('#cli_dir').val())
+          .text($('#cli_barr').val())
+          .text($('#cli_tel').val())
+      }
 
     );
 
