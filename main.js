@@ -1,5 +1,5 @@
 require('update-electron-app')({
-  repo: 'C:/wamp64/www/ShakeIt_desktop/dist/win-unpacked',
+  repo: 'https://github.com/afestradam/ShakeIt_desktop.git',
   //host: 'C:/wamp64/www/ShakeIt_desktop/dist',
   updateInterval: '5 minutes',
   logger: require('electron-log')
