@@ -10,6 +10,7 @@ const {app, BrowserWindow} = electron
 
 const path = require('path')
 const url = require('url')
+const feed ='https://github.com/afestradam/ShakeIt_desktop.git'
 
 let win
 
@@ -34,6 +35,7 @@ app.on('ready', () => {
 
   createWindow()
 
+autoUpdater.setFeedURL(feed)
   autoUpdater.checkForUpdates()
 
   win.webContents.on('did-finish-load', () => {
