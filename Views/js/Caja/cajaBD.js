@@ -1,8 +1,8 @@
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- * 
+ *
  */
 
 function Caja_Estado() {
@@ -21,7 +21,7 @@ function Caja_Estado() {
         data: request,
         dataType: 'json',
         success: function (response) {
-
+debugger
             if (response.Respuesta != 0) {
                 localStorage.setItem('caja', response.Respuesta[0].estado_caja);
 
@@ -199,4 +199,3 @@ function guardarCajaInfoLocal(val, est) {
     }
 
 }
-

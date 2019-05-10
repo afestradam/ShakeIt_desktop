@@ -159,7 +159,7 @@ function BuscarSedeInfo() {
 
     var sql = "call Sedes_GetXNom('" + nomsede + "');";
     con.query(sql, function (err, results) {
-       //debugger
+       debugger
         numRows = results[0].length;
         if (numRows > 0) {
             //debugger
