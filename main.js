@@ -34,7 +34,7 @@ app.on('ready', () => {
 
   createWindow()
 
-  autoUpdater.checkForUpdatesAndNotify()
+  autoUpdater.checkForUpdates()
 
   win.webContents.on('did-finish-load', () => {
     win.webContents.send('version', app.getVersion())
