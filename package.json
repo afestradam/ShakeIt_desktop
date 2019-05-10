@@ -1,6 +1,6 @@
 {
   "name": "ShakeIt",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Aplicación de escritorio de Shake It",
   "main": "main.js",
   "scripts": {
