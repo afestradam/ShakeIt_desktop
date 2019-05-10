@@ -1,8 +1,8 @@
 version: 1.0.2
 files:
   - url: ShakeIt-Setup-1.0.2.exe
-    sha512: bIgcfHrI7lfBfnYh8lOpcv8kPQLZU18NRvKuWDRR0LopG2GLfixbwA8MlGvTTSiccq5dBvdgfIha1EsyrGdQ4Q==
-    size: 62243458
+    sha512: iAtPyb9pkBIeEVmAHGvEi2jxoKIIupJo/8agL1zXktT/n1kCSJ5Qt4FMx8x2eAwzbTKrs2luv2FK6ClSVWRZPg==
+    size: 62522008
 path: ShakeIt-Setup-1.0.2.exe
-sha512: bIgcfHrI7lfBfnYh8lOpcv8kPQLZU18NRvKuWDRR0LopG2GLfixbwA8MlGvTTSiccq5dBvdgfIha1EsyrGdQ4Q==
-releaseDate: '2019-05-10T20:38:21.621Z'
+sha512: iAtPyb9pkBIeEVmAHGvEi2jxoKIIupJo/8agL1zXktT/n1kCSJ5Qt4FMx8x2eAwzbTKrs2luv2FK6ClSVWRZPg==
+releaseDate: '2019-05-10T21:33:54.390Z'
