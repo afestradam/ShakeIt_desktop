@@ -4,7 +4,7 @@
   //updateInterval: '5 minutes',
   //logger: require('electron-log')
 //});
-const { autoUpdater } = require("electron-updater")
+const { autoUpdater, dialog } = require("electron-updater")
 const electron = require('electron')
 const {app, BrowserWindow} = electron
 
@@ -36,11 +36,7 @@ app.on('ready', () => {
   createWindow()
 
 autoUpdater.setFeedURL(feed)
-  autoUpdater.checkForUpdates()
-
-  win.webContents.on('did-finish-load', () => {
-    win.webContents.send('version', app.getVersion())
-  })
+autoUpdater.checkForUpdates()
 
 })
 
@@ -48,33 +44,20 @@ app.on('window-all-closed', () => {
   app.quit()
 })
 
+autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
+  const dialogOpts = {
+    type: 'información',
+    buttons: ['Reiniciar', 'Despues'],
+    title: 'Actualización de aplicación',
+    message: 'Una nueva versión ha sido descargada. Reiniciar la aplicación para aplicar las actualizaciones .'
+}
 
-autoUpdater.on('checking-for-update', () => {
-  dispatch('Checking for update...')
+dialog.showMessageBox(dialogOpts, (response) => {
+  if (response === 0) autoUpdater.quitAndInstall()
+})
 })
 
-autoUpdater.on('update-available', (info) => {
-  dispatch('Update available.')
-})
-
-autoUpdater.on('update-not-available', (info) => {
-  dispatch('Update not available.')
-})
-
-autoUpdater.on('error', (err) => {
-  dispatch('Error in auto-updater. ' + err)
-})
-
-autoUpdater.on('download-progress', (progressObj) => {
-  // let log_message = "Download speed: " + progressObj.bytesPerSecond
-  // log_message = log_message + ' - Downloaded ' + progressObj.percent + '%'
-  // log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')'
-  // dispatch(log_message)
-
-    win.webContents.send('download-progress', progressObj.percent)
-
-})
-
-autoUpdater.on('update-downloaded', (info) => {
-  dispatch('Update downloaded')
+autoUpdater.on('error', message => {
+  console.error('There was a problem updating the application')
+  console.error(message)
 })

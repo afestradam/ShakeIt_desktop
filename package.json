@@ -9,7 +9,7 @@
     "pack": "build --dir",
     "dist": "build"
   },
-  "author": "",
+  "author": "Softan Soluciones",
   "license": "MIT",
   "build": {
     "appId": "SoftanSo_1",
