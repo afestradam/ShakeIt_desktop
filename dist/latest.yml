@@ -1,0 +1,8 @@
+version: 1.0.0
+files:
+  - url: ShakeIt-Setup-1.0.0.exe
+    sha512: QVY5DnKWR+gLjwy2Rt6/RuOvgeMhmrbDWZ0Ea7+kCRQ12xuY6Ptlg1nc5MIh31AbRDCWaU5rXHUFe0mHmNMmLQ==
+    size: 62958112
+path: ShakeIt-Setup-1.0.0.exe
+sha512: QVY5DnKWR+gLjwy2Rt6/RuOvgeMhmrbDWZ0Ea7+kCRQ12xuY6Ptlg1nc5MIh31AbRDCWaU5rXHUFe0mHmNMmLQ==
+releaseDate: '2019-05-11T20:52:34.154Z'
