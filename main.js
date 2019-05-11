@@ -56,9 +56,5 @@ dialog.showMessageBox(dialogOpts, (response) => {
 })
 
 autoUpdater.on('error', message => {
-const dialogOpts = {
-    type: 'información',
-    title: 'Error',
-    message: 'No se ha podido procesar la actualización'
-    dialog.showMessageBox(dialogOpts)
+alert('no');
 })
