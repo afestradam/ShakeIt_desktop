@@ -1,6 +1,6 @@
 {
   "name": "ShakeIt",
-  "version": "1.0.4",
+  "version": "1.0.0",
   "description": "Aplicación de escritorio de Shake It",
   "repository": "https://github.com/afestradam/ShakeIt_desktop.git",
   "main": "main.js",
