@@ -17,7 +17,7 @@ const {
   app,
   BrowserWindow
 } = electron
-
+const mensajes = require('dialogs')
 const path = require('path')
 const url = require('url')
 const feed = 'http://shakeitcol.co/Archivos/Updates'
@@ -62,10 +62,23 @@ app.on('window-all-closed', () => {
 
 autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
 
-autoUpdater.quitAndInstall()
+  //autoUpdater.quitAndInstall()
 
+  const options = {
+    type: 'question',
+    buttons: ['Instalar ahora', 'No instalar'],
+    defaultId: 2,
+    title: 'Actualización',
+    message: 'Hay una nueva actualización, ¿desea instalarla?',
+  };
+  dialog.showMessageBox(null, options, (response) => {
+    console.log(response);
+    if (response == 0) {
+      autoUpdater.quitAndInstall()
+    }
+  });
 })
 
-    autoUpdater.on('error', message => {
-      alert('no');
-    })
+autoUpdater.on('error', message => {
+  alert('no');
+})
