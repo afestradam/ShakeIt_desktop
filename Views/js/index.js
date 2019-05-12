@@ -13,6 +13,7 @@ function validaDirectorios() {
   var dir2_2 = 'C:/SoftanSol/Shake_It/Sedes';
 
   if (!fs.existsSync(dir1)) {
+
     fs.mkdirSync(dir1);
     fs.mkdirSync(dir2);
     fs.mkdirSync(dir2_1);
@@ -22,25 +23,26 @@ function validaDirectorios() {
     fs.mkdirSync(dir2_1_1_3);
     fs.mkdirSync(dir2_1_1_4);
     fs.mkdirSync(dir2_2);
+descargarScript();
 
     if (fechaAhora == fechaLocal) {
       validaLicencia();
     } else {
-      createRemoteBackUp()
+      createDatabase()
     }
 
   } else {
     if (fechaAhora == fechaLocal) {
       validaLicencia();
     } else {
-      createRemoteBackUp()
+      dropTables()
     }
   }
 
 }
 
 function validaLicencia() {
-
+$("#modal_msg").modal('hide');
   const fs = require('fs');
   var dir2_1_1_4 = 'C:/SoftanSol/Shake_It/Saves/Bin/SLicencia/Licencia.txt';
 
@@ -248,7 +250,7 @@ function insert_Sede() {
 }
 
 function insert_SedeS(nit, nom, dir, mun, tel1, tel2, tel3, long, lat) {
-
+debugger
   var dataserver = nit + '|' + nom + '|' + dir + '|' + mun + '|' + tel1 + '|' + tel2 + '|' + tel3 + '|' + long + '|' + lat
   var dataserverb = window.btoa(dataserver);
   var sede = {
@@ -263,6 +265,7 @@ function insert_SedeS(nit, nom, dir, mun, tel1, tel2, tel3, long, lat) {
     data: sede,
     dataType: 'json',
     success: function(response) {
+      debugger
       if (response.Respuesta != 0) {
         guardarSedeLoc(nom);
       } else {

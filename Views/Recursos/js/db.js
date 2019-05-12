@@ -21,6 +21,18 @@ var con = mysql.createConnection({
 });
 
 function createDatabase() {
+  debugger
+  $("#msg").html('<br><center>\n\
+  <div class="progress">\n\
+    <div class="progress-bar w-0" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>\n\
+  </div>\n\
+  </div><br><br><h5>Creando base de datos...</h5></center>');
+
+  $("#modal_msg").modal({
+    backdrop: 'static',
+    keyboard: true,
+    show: true
+  });
 
   var mysql = require('mysql');
 
@@ -30,39 +42,114 @@ function createDatabase() {
     password: "root"
   });
 
+  var val = 0
   var sql = "CREATE DATABASE IF NOT EXISTS shakeitdata_loc /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci */;";
   conCreate.query(sql, function(err, result) {
     if (err) {
-      alert('Error al crear Base de datos.')
-    } else {
-      alert('Base de datos creada.')
-      restoreBackUp();
+      val++
     }
   });
+  if (val > 0) {
+    MensajeError1('Error al crear Base de datos.')
+  } else {
+    $("#msg").html('<br><center>\n\
+    <div class="progress">\n\
+      <div class="progress-bar w-25" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>\n\
+    </div>\n\
+    </div><br><br><h5>Creando base de datos...</h5></center>');
+    crearEstructura()
+  }
+}
+
+function crearEstructura() {
+  debugger
+  $("#msg").html('<br><center>\n\
+  <div class="progress">\n\
+    <div class="progress-bar w-25" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>\n\
+  </div>\n\
+  </div><br><br><h5>Creando estructura de base de datos...</h5></center>');
+
+  var val = 0
+  var execsql = require('execsql'),
+    dbConfig = {
+      host: 'localhost',
+      user: 'root',
+      password: 'root'
+    },
+    sql = 'use shakeitdata_loc;',
+    sqlFile = 'C:/SoftanSol/Shake_It/Saves/Bin/Backups/dbEstructure.sql';
+  execsql.config(dbConfig)
+    .exec(sql)
+    .execFile(sqlFile, function(err, results) {
+      if (err) {
+        val++;
+      }
+    }).end();
+  if (val > 0) {
+    MensajeError1('Error al crear estructura');
+  } else {
+    $("#msg").html('<br><center>\n\
+        <div class="progress">\n\
+          <div class="progress-bar w-100" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>\n\
+        </div>\n\
+        </div><br><br><h5>Base de datos creada</h5></center>');
+    dropTables();
+  }
+}
+
+function descargarScript() {
+
+  const http = require('http');
+  const fs = require('fs');
+
+  const file = fs.createWriteStream("C:/SoftanSol/Shake_It/Saves/Bin/Backups/dbEstructure.sql");
+  const request = http.get("http://shakeitcol.co/Archivos/MySql/dbEstructure.sql", function(response) {
+    response.pipe(file);
+  });
+
 }
 
 function dropTables() {
 
-  var sql = "DROP TABLE IF EXISTS caja, categorias, consumo, departamentos, entidadespago, estados_generales, insumos, insumos_rel, inventario, medio_pago, movimientos_concepto, movimientos_tipo, municipios, productos, sedes, unidades, usuarios, usuarios_tipo;";
-  con.query(sql, function(err, result) {
-    if (err) {
-      alert('Error al borrar tablas.')
-    }
-  });
-}
-
-function createRemoteBackUp() {
-
-  $("#msg").html('<center>\n\
-  <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">\n\
-  <span class="sr-only">Loading...</span>\n\
-  </div><br><br><h5>Obteniendo datos remotos</h5></center>');
+  $("#msg").html('<br><center>\n\
+  <div class="progress">\n\
+    <div class="progress-bar w-0" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>\n\
+  </div>\n\
+  </div><br><br><h5>Modificando tablas</h5></center>');
 
   $("#modal_msg").modal({
     backdrop: 'static',
     keyboard: true,
     show: true
   });
+
+  var val = 0
+  var sqli = "DROP TABLE IF EXISTS caja, categorias, consumo, entidadespago, estados_generales, insumos, insumos_rel, inventario, medio_pago, movimientos_concepto, movimientos_tipo, productos, sedes, unidades, usuarios, usuarios_tipo;";
+  con.query(sqli, function(err, result) {
+    if (err) {
+      val++
+    }
+  });
+
+  if (val > 0) {
+    MensajeError('Error al modificar tablas.')
+  } else {
+    $("#msg").html('<center>\n\
+  <div class="progress">\n\
+    <div class="progress-bar w-25" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>\n\
+  </div><br>\n\
+  </div><br><br><h5>Tablas Modificadas</h5></center>');
+    createRemoteBackUp();
+  }
+}
+
+function createRemoteBackUp() {
+
+  $("#msg").html('<center>\n\
+  <div class="progress">\n\
+    <div class="progress-bar w-50" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>\n\
+  </div><br>\n\
+  </div><br><br><h5>Creando respaldo de base de datos.</h5></center>');
 
   var mysqlDump = require('mysqldump');
   var fs = require('fs');
@@ -72,13 +159,18 @@ function createRemoteBackUp() {
       host: '190.8.176.71',
       user: 'shakei_userbd',
       password: 'Usuario01',
-      database: 'shakei_shakeit_des',
+      database: 'shakei_shakeit_prod',
     },
     dump: {
-      tables: ['caja', 'categorias', 'consumo', 'departamentos', 'entidadespago', 'estados_generales', 'insumos', 'insumos_rel', 'inventario', 'medio_pago', 'movimientos_concepto', 'movimientos_tipo', 'municipios', 'productos', 'sedes', 'unidades', 'usuarios', 'usuarios_tipo'],
+      tables: ['caja', 'categorias', 'consumo', 'entidadespago', 'estados_generales', 'insumos', 'insumos_rel', 'inventario', 'medio_pago', 'movimientos_concepto', 'movimientos_tipo', 'productos', 'sedes', 'unidades', 'usuarios', 'usuarios_tipo'],
     },
     dumpToFile: 'C:/SoftanSol/Shake_It/Saves/Bin/Backups/backUpR.sql',
   }).then(dump => {
+    $("#msg").html('<center>\n\
+    <div class="progress">\n\
+      <div class="progress-bar w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>\n\
+    </div><br>\n\
+    </div><br><br><h5>Respaldo de base de datos creado.</h5></center>');
     restoreBackUp();
   })
 
@@ -86,12 +178,11 @@ function createRemoteBackUp() {
 
 function restoreBackUp() {
 
-  dropTables();
-
   $("#msg").html('<center>\n\
-    <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">\n\
-    <span class="sr-only">Loading...</span>\n\
-    </div><br><br><h5>Guardando datos locales</h5></center>');
+  <div class="progress">\n\
+    <div class="progress-bar w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>\n\
+  </div><br>\n\
+  </div><br><br><h5>Guardando datos locales.</h5></center>');
 
   require('mysql-import').config({
     host: 'localhost',
@@ -100,10 +191,38 @@ function restoreBackUp() {
     database: 'shakeitdata_loc',
     onerror: err => alert(err.message)
   }).import('C:/SoftanSol/Shake_It/Saves/Bin/Backups/backUpR.sql').then(() => {
-    $("#modal_msg").modal('hide');
+    $("#msg").html('<center>\n\
+    <div class="progress">\n\
+      <div class="progress-bar w-100" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>\n\
+    </div><br>\n\
+    </div><br><br><h5>Datos locales guardados.</h5></center>');
     localStorage.setItem("backup", 1);
     localStorage.setItem("backupDete", fechaAhora);
+    $("#modal_msg").modal('hide');
     validaLicencia();
   });
+}
+
+function MensajeError(err) {
+
+  $("#msg").html('<center>\n\
+    <i class="fas fa-exclamation-triangle"></i>\n\
+    </div><br><br><h5>Error al guardar los datos: ' + err + '</h5></center>');
+  $("#btns").html("<center>\n\
+   <a class='btn btn-danger btn-sm' href='javascript: dropTables()' role='button'>Reintentar</a>\n\
+   <a class='btn btn-prymary btn-sm' data-dismiss='modal' aria-label='Close' href='#' role='button'>Cerrar</a>\n\
+   </center>");
+
+}
+
+function MensajeError1(err) {
+
+  $("#msg").html('<center>\n\
+    <i class="fas fa-exclamation-triangle"></i>\n\
+    </div><br><br><h5>Error al guardar los datos: ' + err + '</h5></center>');
+  $("#btns").html("<center>\n\
+   <a class='btn btn-danger btn-sm' href='javascript: createDatabase()' role='button'>Reintentar</a>\n\
+   <a class='btn btn-prymary btn-sm' data-dismiss='modal' aria-label='Close' href='#' role='button'>Cerrar</a>\n\
+   </center>");
 
 }

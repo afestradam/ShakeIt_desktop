@@ -52,6 +52,7 @@
     "electron-squirrel-startup": "^1.0.0",
     "electron-updater": "^4.0.6",
     "escpos": "^2.4.11",
+    "execsql": "0.0.3",
     "mysql": "^2.17.1",
     "mysql-backup": "^1.0.0",
     "mysql-import": "^2.0.2",

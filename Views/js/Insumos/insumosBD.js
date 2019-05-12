@@ -1,4 +1,4 @@
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -39,9 +39,8 @@ function Get_Insumos() {
                        </tr>');
             });
         } else {
-            $("#btns").html("<center><input data-dismiss='modal' aria-label='Close' class='btn btn-primary m-r-1em' value='Aceptar'/></center>");
-            $("#msg").html("<center><p>No existe información.</p></center>");
-            $("#modal_msg").modal('show');
+            $("#tab_InsBody");
+            $("#tab_InsBody").html("<center><p>No existe información.</p></center>");
         }
     });
 }
