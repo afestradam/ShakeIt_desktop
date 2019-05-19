@@ -23,14 +23,13 @@ function validaDirectorios() {
     fs.mkdirSync(dir2_1_1_3);
     fs.mkdirSync(dir2_1_1_4);
     fs.mkdirSync(dir2_2);
-descargarScript();
+    descargarScript();
 
     if (fechaAhora == fechaLocal) {
       validaLicencia();
     } else {
       createDatabase()
     }
-
   } else {
     if (fechaAhora == fechaLocal) {
       validaLicencia();
@@ -38,11 +37,10 @@ descargarScript();
       dropTables()
     }
   }
-
 }
 
 function validaLicencia() {
-$("#modal_msg").modal('hide');
+  $("#modal_msg").modal('hide');
   const fs = require('fs');
   var dir2_1_1_4 = 'C:/SoftanSol/Shake_It/Saves/Bin/SLicencia/Licencia.txt';
 
@@ -250,7 +248,7 @@ function insert_Sede() {
 }
 
 function insert_SedeS(nit, nom, dir, mun, tel1, tel2, tel3, long, lat) {
-debugger
+  debugger
   var dataserver = nit + '|' + nom + '|' + dir + '|' + mun + '|' + tel1 + '|' + tel2 + '|' + tel3 + '|' + long + '|' + lat
   var dataserverb = window.btoa(dataserver);
   var sede = {

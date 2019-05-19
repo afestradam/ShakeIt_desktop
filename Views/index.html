@@ -5,225 +5,226 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-    <head>
-        <title>Shake It Desktop</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="Recursos/headers.js" type="text/javascript"></script>
-        <script src="js/Comunes/comunesBD.js" type="text/javascript"></script>
-        <script src="js/index.js" type="text/javascript"></script>
-        <script src="js/Login/login.js" type="text/javascript"></script>
-    </head>
-    <body class="">
-        <!--<nav class="navbar navbar-light" style="background-color: #00629E;">
+
+<head>
+  <title>Shake It Desktop</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="Recursos/headers.js" type="text/javascript"></script>
+  <script src="js/Comunes/comunesBD.js" type="text/javascript"></script>
+  <script src="js/index.js" type="text/javascript"></script>
+  <script src="js/Login/login.js" type="text/javascript"></script>
+</head>
+
+<body class="" style="background-image: url('media/parallax-circle.jpg'); background-repeat: no-repeat; background-size: cover;">
+  <!--<nav class="navbar navbar-light" style="background-color: #00629E;">
             <a class="navbar-brand" href="#" style="color: white; font-weight:;">
                 Softan Admin
             </a>
         </nav>-->
+  <div class="" id="logcont" style="width: 40%; height: 100%; padding: 4%; background-color: white;">
     <center>
-        <div class="" id="logcont" style="">
-            <center>
-                <div class="">
-                    <img src="media/logo.png" alt="" style="height: auto; width: 60%;"/>
-                    <br>
-                    <br>
-                    <h5 style="color: #6b195a;">
-                        INICIO DE SESIÓN
-                    </h5>
-                </div>
-            </center>
-            <form class="" autocomplete="off">
-                <br>
-                <div class="form-group">
-                    <input type="number" class="form-control justify-content-end" id="user" name="log" campo="Usuario" placeholder="Usuario" onchange="removec(this)">
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control justify-content-end" id="pass" name="log" placeholder="Contraseña" onchange="removec(this)">
-                </div>
-                <div class="form-check" style="display: none;">
-                    <label class="form-check-label">
-                        <input id="passc" class="form-check-input" type="checkbox"> Recordarme.
-                    </label>
-                </div>
-                <br>
-                <div class="form-group">
-                    <a href="javascript: void(0);">
-                        <button type="button" class="btn btn-light" id="ingresar" style="width: 100%; text-align: center; background-color: #6b195a; color: white; font-weight: bold;">
-                            Ingresar
-                        </button>
-                    </a>
-                    <button type="button" class="btn btn-light" id="ingresando" style="display: none; width: 100%; text-align: center; background-color: #6b195a; color: white; font-weight: bold;" disabled>
-                        <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> Iniciando Sesión
-                    </button>
-                </div>
-            </form>
-        </div>
+      <div class="">
+        <img src="media/logo.png" alt="" style="height: auto; width: 60%;" />
+        <br>
+        <br>
+        <h5>
+          SEDES
+        </h5>
+      </div>
     </center>
-    <nav class=" fixed-bottom container7Lf">
-        <footer class="" style=" font-size: 10px; background-color: lightgrey; color: black;" >
-            Copyright &copy;Softan Soluciones 2017 Valledupar-Colombia
-        </footer>
-    </nav>
-    <!---------------------------Modal Mensaje----------------------------->
-    <div class="modal fade bd-example-modal-lg" id="modal_msg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <p class="modal-title" style="font-weight: bold;">Alerta</p>
-                </div>
-                <div class="modal-body" id="msg">
-                </div>
-                <center>
-                    <div class="modal-footer" id="btns">
-                    </div>
-                </center>
-            </div>
+    <form class="" autocomplete="off">
+      <br>
+      <div class="form-group">
+        <input type="number" class="form-control justify-content-end" id="user" name="log" data-campo="Usuario" placeholder="Usuario" onchange="removec(this)">
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control justify-content-end" id="pass" name="log" data-campo="Contraseña" placeholder="Contraseña" onchange="removec(this)">
+      </div>
+      <div class="form-check" style="display: none;">
+        <label class="form-check-label">
+          <input id="passc" class="form-check-input" type="checkbox"> Recordarme.
+        </label>
+      </div>
+      <br>
+      <div class="form-group">
+        <a href="javascript: void(0);">
+          <button type="button" class="btn btn-light" id="ingresar" style="width: 100%; text-align: center; background-color:#00396a; color: white; font-weight: bold;">
+            Ingresar
+          </button>
+        </a>
+        <button type="button" class="btn btn-light" id="ingresando" style="display: none; width: 100%; text-align: center; background-color: #00396a; color: white; font-weight: bold;" disabled>
+          <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> Iniciando Sesión
+        </button>
+      </div>
+    </form>
+  </div>
+  <nav class=" fixed-bottom container7Lf">
+    <footer class="" style=" font-size: 10px; background-color: lightgrey; color: black;">
+      Copyright &copy;Softan Soluciones 2019 Bogotá-Colombia
+    </footer>
+  </nav>
+  <!---------------------------Modal Mensaje----------------------------->
+  <div class="modal fade bd-example-modal-lg" id="modal_msg" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <p class="modal-title" style="font-weight: bold;">Alerta</p>
         </div>
-    </div>
-
-    <!-- Licencia modal -->
-    <div id="lic_mod" class="modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Registrar Licencia</h5>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="lic_text" placeholder="Licencia">
-                        <small id="licHelp" class="form-text text-muted">Licencia.</small>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <a id="licGuardar" class="btn btn_sh btn-sm" href="javascript: verificarLcencia();" role="button">Guardar</a>
-                    <a id="licGuardando" class="btn btn_sh btn-sm disabled backText" href="#" role="button">
-                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                        Verificando...
-                    </a>
-                </div>
-            </div>
+        <div class="modal-body" id="msg">
         </div>
+        <center>
+          <div class="modal-footer" id="btns">
+          </div>
+        </center>
+      </div>
     </div>
+  </div>
 
-    <!-- Sede Modal -->
-    <div id="selsede_mod" class="modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Elegir Acción</h5>
-                </div>
-                <div class="modal-body">
-                    <center>
-                        <a id="licGuardar" class="btn btn_sh_normal  btn-lg" href="javascript: elegirSede();" role="button">Sede Existente</a>
-                        <a id="licGuardar" class="btn btn_sh_normal  btn-lg" href="javascript: registrarSede();" role="button">Nueva Sede</a>
-                    </center>
-                </div>
-            </div>
+  <!-- Licencia modal -->
+  <div id="lic_mod" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Registrar Licencia</h5>
         </div>
-    </div>
-
-    <!-----------------Modal Registro----------------------------------->
-    <div id="registrarSede_mod" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Registro De Sede</h5>
-                    <a class="close" href="javascript: cerrarModal()" role="button">
-                        <span aria-hidden="true">&times;</span>
-                    </a>
-                </div>
-                <div class="modal-body">
-
-                    <form class="">
-                        <div id="msg_alert_mod" class="alert alert-dark" role="alert" style="display: none;">
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-4">
-                                <input type="text" class="form-control" id="sede_nit" name="sede_g" campo="Nit" placeholder="Nit" onchange='removec(this)'>
-                            </div>
-                            <div class="form-group col-md-4">
-                                <input type="text" class="form-control" id="sede_nom" name="sede_g" campo="Nombre" placeholder="Nombre De Sede" onchange='removec(this)'>
-                            </div>
-                            <div class="form-group col-md-4">
-                                <input type="text" class="form-control" id="sede_dir" name="sede_g" campo="Dirección" placeholder="Dirección de sede" onchange='removec(this)'>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="form-group col-md-6">
-                                 <select class="form-control" id="sede_dep" name="sede_g" campo="Departamento" onchange="Get_MunicipioSel('#sede_mun', this)">
-                                    <option>Elegir Departamento</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-6">
-                                 <select class="form-control" id="sede_mun" name="sede_g" campo="Municipio">
-                                    <option>Elegir Municipio</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="form-group col-md-6">
-                                <input type="number" class="form-control" id="sede_tel1" name="sede_g" campo="Teléfono 1" placeholder="Teléfono" onchange='removec(this)'>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <input type="number" class="form-control" id="sede_tel2" name="sede_g" campo="WhatsApp" placeholder="WhatsApp" onchange='removec(this)'>
-                            </div>
-                            <div class="form-group col-md-4  backText">
-                                <input type="number" class="form-control" id="sede_tel3" name="sede_g" campo="Teléfono 3" placeholder="Teléfono 3" value="0" onchange='removec(this)'>
-                            </div>
-                        </div>
-                        <div class="form-group row backText">
-                            <div class="form-group col-md-6">
-                                <input type="text" class="form-control" id="sede_long" name="sede_g" campo="Longitud" value="0" placeholder="Longitud(Ubicación)" onchange='removec(this)'>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <input type="text" class="form-control" id="sede_lat" name="sede_g" campo="Latitud" value="0" placeholder="Latitud(Ubicación)" onchange='removec(this)'>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <a id="sedeGuardar" class="btn btn_sh btn-sm" href="javascript: valregSede();" role="button">Guardar</a>
-                    <a id="sedeGuardando" class="btn btn_sh btn-sm disabled backText" href="#" role="button">
-                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                        Guardando...
-                    </a>
-                </div>
-            </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <input type="text" class="form-control" id="lic_text" placeholder="Licencia">
+            <small id="licHelp" class="form-text text-muted">Licencia.</small>
+          </div>
         </div>
-    </div>
-
-    <!--Modal Elegir Sede -->
-    <div id="elegirSede_mod" class="modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Elegir Sede Existente</h5>
-                    <a class="close" href="javascript: cerrarModal()" role="button">
-                        <span aria-hidden="true">&times;</span>
-                    </a>
-                </div>
-                <div class="modal-body">
-                    <center>
-                        <form>
-                            <div class="form-group">
-                                <select class="form-control" id="sede_select">
-                                    <option>Elegir Sede</option>
-                                </select>
-                                <small id="sedeHelp" class="form-text text-muted">Sedes.</small>
-                            </div>
-                        </form>
-                    </center>
-                </div>
-                <div class="modal-footer">
-                    <a id="sede_elGuardar" class="btn btn_sh btn-sm" href="javascript: valelegirSede();" role="button">Guardar</a>
-                    <a id="sede_elGuardando" class="btn btn_sh btn-sm disabled backText" href="#" role="button">
-                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                        Guardando...
-                    </a>
-                </div>
-            </div>
+        <div class="modal-footer">
+          <a id="licGuardar" class="btn btn_sh btn-sm" href="javascript: verificarLcencia();" role="button">Guardar</a>
+          <a id="licGuardando" class="btn btn_sh btn-sm disabled backText" href="#" role="button">
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Verificando...
+          </a>
         </div>
+      </div>
     </div>
+  </div>
+
+  <!-- Sede Modal -->
+  <div id="selsede_mod" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Elegir Acción</h5>
+        </div>
+        <div class="modal-body">
+          <center>
+            <a id="licGuardar" class="btn btn_sh_normal  btn-lg" href="javascript: elegirSede();" role="button">Sede Existente</a>
+            <a id="licGuardar" class="btn btn_sh_normal  btn-lg" href="javascript: registrarSede();" role="button">Nueva Sede</a>
+          </center>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-----------------Modal Registro Sede----------------------------------->
+  <div id="registrarSede_mod" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Registro De Sede</h5>
+          <a class="close" href="javascript: cerrarModal()" role="button">
+            <span aria-hidden="true">&times;</span>
+          </a>
+        </div>
+        <div class="modal-body">
+
+          <form class="">
+            <div id="msg_alert_mod" class="alert alert-dark" role="alert" style="display: none;">
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <input type="text" class="form-control" id="sede_nit" name="sede_g" campo="Nit" placeholder="Nit" onchange='removec(this)'>
+              </div>
+              <div class="form-group col-md-4">
+                <input type="text" class="form-control" id="sede_nom" name="sede_g" campo="Nombre" placeholder="Nombre De Sede" onchange='removec(this)'>
+              </div>
+              <div class="form-group col-md-4">
+                <input type="text" class="form-control" id="sede_dir" name="sede_g" campo="Dirección" placeholder="Dirección de sede" onchange='removec(this)'>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="form-group col-md-6">
+                <select class="form-control" id="sede_dep" name="sede_g" campo="Departamento" onchange="Get_MunicipioSel('#sede_mun', this)">
+                  <option>Elegir Departamento</option>
+                </select>
+              </div>
+              <div class="form-group col-md-6">
+                <select class="form-control" id="sede_mun" name="sede_g" campo="Municipio">
+                  <option>Elegir Municipio</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="form-group col-md-6">
+                <input type="number" class="form-control" id="sede_tel1" name="sede_g" campo="Teléfono 1" placeholder="Teléfono" onchange='removec(this)'>
+              </div>
+              <div class="form-group col-md-6">
+                <input type="number" class="form-control" id="sede_tel2" name="sede_g" campo="WhatsApp" placeholder="WhatsApp" onchange='removec(this)'>
+              </div>
+              <div class="form-group col-md-4  backText">
+                <input type="number" class="form-control" id="sede_tel3" name="sede_g" campo="Teléfono 3" placeholder="Teléfono 3" value="0" onchange='removec(this)'>
+              </div>
+            </div>
+            <div class="form-group row backText">
+              <div class="form-group col-md-6">
+                <input type="text" class="form-control" id="sede_long" name="sede_g" campo="Longitud" value="0" placeholder="Longitud(Ubicación)" onchange='removec(this)'>
+              </div>
+              <div class="form-group col-md-6">
+                <input type="text" class="form-control" id="sede_lat" name="sede_g" campo="Latitud" value="0" placeholder="Latitud(Ubicación)" onchange='removec(this)'>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <a id="sedeGuardar" class="btn btn_sh btn-sm" href="javascript: valregSede();" role="button">Guardar</a>
+          <a id="sedeGuardando" class="btn btn_sh btn-sm disabled backText" href="#" role="button">
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Guardando...
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Modal Elegir Sede -->
+  <div id="elegirSede_mod" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Elegir Sede Existente</h5>
+          <a class="close" href="javascript: cerrarModal()" role="button">
+            <span aria-hidden="true">&times;</span>
+          </a>
+        </div>
+        <div class="modal-body">
+          <center>
+            <form>
+              <div class="form-group">
+                <select class="form-control" id="sede_select">
+                  <option>Elegir Sede</option>
+                </select>
+                <small id="sedeHelp" class="form-text text-muted">Sedes.</small>
+              </div>
+            </form>
+          </center>
+        </div>
+        <div class="modal-footer">
+          <a id="sede_elGuardar" class="btn btn_sh btn-sm" href="javascript: valelegirSede();" role="button">Guardar</a>
+          <a id="sede_elGuardando" class="btn btn_sh btn-sm disabled backText" href="#" role="button">
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Guardando...
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
+
 </html>

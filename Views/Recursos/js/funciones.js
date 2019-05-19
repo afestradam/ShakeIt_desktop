@@ -6,8 +6,8 @@ var dia = fecha.getDate();
 var fechaAhora = anio+"-"+mes+"-"+dia;
 var fechaLocal = localStorage.getItem("backupDete");
 var NumeroVenta = localStorage.getItem('Venta_Num');
-var baseLoc = 'http://localhost/';
-var base = 'http://shakeitcol.co/';
+var base = 'http://localhost/';
+var baseRem = 'http://shakeitcol.co/';
 
 function buscarD(tabla)
 {
@@ -132,7 +132,9 @@ function countCampos(name) {
 function removec(d) {
     //$(d).popover('destroy');
     $('#msg_alert_modG').hide('fast')
+    $('#msg_alert_modE').hide('fast')
     $('#msg_alert_mod').hide('fast')
+    $('.alert').hide('fast')
     $(d).removeClass("is-invalid");
 }
 
