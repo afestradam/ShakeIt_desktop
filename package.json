@@ -47,6 +47,7 @@
     "grunt-electron-installer": "^2.1.0"
   },
   "dependencies": {
+    "child_process": "^1.0.2",
     "dialogs": "^1.1.20",
     "electron-log": "^3.0.5",
     "electron-squirrel-startup": "^1.0.0",

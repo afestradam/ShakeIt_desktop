@@ -15,8 +15,7 @@ and open the template in the editor.
         <script src="js/Inventario/inventario.js" type="text/javascript"></script>
     </head>
     <body>
-        <div>
-            <ul class="nav justify-content-end optionsBar">
+        <ul class="nav navColor justify-content-end fixed-top">
                 <li class="nav-item">
                     <a class="nav-link" href="javascript: formGuardar()" >Agregar</a>
                 </li>
@@ -24,10 +23,12 @@ and open the template in the editor.
                     <a class="nav-link" href="inicio.html">Salir</a>
                 </li>
             </ul>
+        <div>
+            <br>
             <br>
             <br>
             <center>
-                <h4>INVENTARIO</h4>    
+                <h4>INVENTARIO</h4>
             </center>
         </div>
         <div style="height: 500px; overflow-y: auto; margin: 2%;">
@@ -94,11 +95,11 @@ and open the template in the editor.
                                     </div>
                                     <div class="form-group col-md-3">
                                         <input type="text" class="form-control" id="inv_unidad" name="inv_g" campo="Unidad" placeholder="Unidad" onchange='removec(this)' readonly='readonly'>
-                                    </div> 
+                                    </div>
                                 </div>
                             </form>
                         </div>
-                        <div class="modal-footer">                    
+                        <div class="modal-footer">
                             <a class="btn btn-danger btn-sm" href="#" role="button" data-dismiss="modal">Cancelar</a>
                             <a id="invGuardar" class="btn btn_sh btn-sm" href="javascript: validarGuardar();" role="button">Guardar</a>
                             <a id="invGuardando" class="btn btn_sh btn-sm disabled backText" href="#" role="button">
@@ -109,7 +110,7 @@ and open the template in the editor.
                     </div>
                 </div>
             </div>
-            
+
             <!---- Modal Editar------->
             <div id="inv_mod_editar" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
@@ -138,11 +139,11 @@ and open the template in the editor.
                                     </div>
                                     <div class="form-group col-md-3">
                                         <input type="text" class="form-control" id="inv_unidade" name="inv_e" campo="Unidad" placeholder="Unidad" onchange='removec(this)' readonly='readonly'>
-                                    </div> 
+                                    </div>
                                 </div>
                             </form>
                         </div>
-                        <div class="modal-footer">                    
+                        <div class="modal-footer">
                             <a class="btn btn-danger btn-sm" href="#" role="button" data-dismiss="modal">Cancelar</a>
                             <a id="invActualizar" class="btn btn_sh btn-sm" href="javascript: validarActualizar();" role="button">Guardar</a>
                             <a id="invActualizando" class="btn btn_sh btn-sm disabled backText" href="#" role="button">

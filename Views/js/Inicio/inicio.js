@@ -4,6 +4,14 @@
  * and open the template in the editor.
  */
 
+function ActualizarBtn(){
+
+$("actActualizar").hide()
+$("actActualizando").show()
+dropTables()
+$("actActualizar").show()
+$("actActualizando").hide()
+}
 
 function ventas() {
 

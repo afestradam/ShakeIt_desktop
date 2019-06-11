@@ -7,7 +7,7 @@ var fechaAhora = anio+"-"+mes+"-"+dia;
 var fechaLocal = localStorage.getItem("backupDete");
 var NumeroVenta = localStorage.getItem('Venta_Num');
 var base = 'http://localhost/';
-var baseRem = 'http://shakeitcol.co/';
+var baseRem = 'https://shakeitcol.co/';
 
 function buscarD(tabla)
 {

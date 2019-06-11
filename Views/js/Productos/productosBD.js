@@ -62,6 +62,7 @@ function id_productoS() {
 }
 
 function Get_Productos() {
+
     var sql = "call Productos_Get();"
     con.query(sql, function (err, results, fields) {
         numRows = results[0].length;
@@ -74,10 +75,11 @@ function Get_Productos() {
                        <td>' + element.nomG_producto + '</td>\n\
                        <td>' + element.precio_producto + '</td>\n\
                        <td>' + element.nomcategoria + '</td>\n\
-                       <td><a class="btn btn-primary btn-sm" href="javascript: show_Producto(' + element.id_producto + ')" role="button">Editar</a>\n\
+                       <td><a class="btn btn_sh_normal btn-sm" href="javascript: show_Producto(' + element.id_producto + ')" role="button">Editar</a>\n\
                        </td><td><a class="btn btn-danger btn-sm" href="javascript: confirmarEliminar(' + element.id_producto + ')" role="button">Eliminar</a></td>\n\
                        </tr>')
             });
+            $("#modal_msg").modal("hide")
         } else {
             $("#btns").html("<center><input data-dismiss='modal' aria-label='Close' class='btn btn-primary m-r-1em' value='Aceptar'/></center>");
             $("#msg").html("<center><p>No existe información para esta categoría.</p></center>");
@@ -208,8 +210,6 @@ function update_productoS(id, nom, nomG, prec, cat, desc) {
         "actualizar": dataserverb
     };
 
-    console.log(dataserverb);
-
     $.ajax({
         type: 'POST',
         url: base + 'ServerShakeIt/Servicios/Productos.php',
@@ -218,7 +218,7 @@ function update_productoS(id, nom, nomG, prec, cat, desc) {
         success: function (response) {
             if (response.Respuesta != 0) {
                 $('#pro_mod_editar').modal('hide')
-                $("#btns").html("<a class='btn btn-danger btn-sm' href='javascript: Vista_Productos()' role='button'>Aceptar</a>");
+                $("#btns").html("<a class='btn btn-danger btn-sm' href='ListProductos.html' role='button'>Aceptar</a>");
                 $("#msg").html("<center><p>" + response.Mensaje + "</p></center>");
                 $('#modal_msg').modal({backdrop: 'static', keyboard: true, show: true})
             } else {
@@ -441,7 +441,7 @@ function insert_productoS(id, nom, nomG, prec, cat, desc) {
         success: function (response) {
             if (response.Respuesta != 0) {
                 $('#pro_mod_editar').modal('hide')
-                $("#btns").html("<a class='btn btn-danger btn-sm' href='javascript: Vista_RegProductos()' role='button'>Aceptar</a>");
+                $("#btns").html("<a class='btn btn-danger btn-sm' href='RegProductos.html' role='button'>Aceptar</a>");
                 $("#msg").html("<center><p>" + response.Mensaje + "</p></center>");
                 $('#modal_msg').modal({backdrop: 'static', keyboard: true, show: true})
             } else {
@@ -506,7 +506,7 @@ function delete_productoS(id) {
         success: function (response) {
             if (response.Respuesta != 0) {
                 $('#pro_mod_editar').modal('hide')
-                $("#btns").html("<a class='btn btn-danger btn-sm' href='javascript: Vista_Productos()' role='button'>Aceptar</a>");
+                $("#btns").html("<a class='btn btn-danger btn-sm' href='ListProductos.html' role='button'>Aceptar</a>");
                 $("#msg").html("<center><p>" + response.Mensaje + "</p></center>");
                 $('#modal_msg').modal({backdrop: 'static', keyboard: true, show: true})
             } else {

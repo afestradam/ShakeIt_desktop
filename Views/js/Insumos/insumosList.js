@@ -7,7 +7,7 @@
 
 function validarActualizar() {
 
-    var val = ValidarCamposAlert('pro_e')
+    var val = ValidarCamposAlert('ins_e')
 
     if (val == true) {
 

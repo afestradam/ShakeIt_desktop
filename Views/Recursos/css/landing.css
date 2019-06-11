@@ -400,6 +400,18 @@ body {
 
 }
 
+.navColor{
+  background-color: #6b195a;
+  color: white;
+  font-weight: bold;
+}
+
+.navColor li a{
+  background-color: #6b195a;
+  color: white;
+  font-weight: bold;
+}
+
 /*-----------------------------Galería de imágenes---------------------*/
 div.gallery {
   margin: 5px;

@@ -21,7 +21,6 @@ function Caja_Estado() {
         data: request,
         dataType: 'json',
         success: function (response) {
-debugger
             if (response.Respuesta != 0) {
                 localStorage.setItem('caja', response.Respuesta[0].estado_caja);
 
@@ -110,16 +109,19 @@ function Get_Ventas(caja) {
 
     var idsede = localStorage.getItem("id_sede");
 
-    var sql = "call Ventas_GetTotal(" + idsede + ");"
+    var sql = "call Ventas_GetTotal(" +"'0-0-0'"+ ","+ 1 +","+ 0 +","+0+"," + idsede + ");"
     con.query(sql, function (err, results, fields) {
+        debugger
         numRows = results[0].length;
-
         if (numRows > 0) {
+debugger
 
-            var valCaja = parseInt(caja) + parseInt(results[0][0].total_ventas)
+var vcaja = parseInt(caja)
+var ventas = results[0][0].total
+            var valCaja = vcaja + ventas
             $('#caja_dinc').val(valCaja);
             $('#caja_dincaux').val(valCaja);
-            $('#caja_ventasc').val(results[0][0].total_ventas)
+            $('#caja_ventasc').val(ventas)
 
         }
     });

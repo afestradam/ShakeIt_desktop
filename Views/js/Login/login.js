@@ -152,7 +152,7 @@ function local() {
 }
 
 function BuscarSedeInfo() {
-  //debugger
+  debugger
   var fs = require('fs');
 
   var nomsede;
@@ -165,7 +165,7 @@ function BuscarSedeInfo() {
     debugger
     numRows = results[0].length;
     if (numRows > 0) {
-      //debugger
+      debugger
       var idsed = results[0][0].id_sede;
       var nitsede = results[0][0].nit_sede;
       var nomsed = results[0][0].nom_sede;
@@ -185,7 +185,7 @@ function BuscarSedeInfo() {
 }
 
 function sesionUs(idus, nomus, apeus, tipus) {
-  //debugger
+  debugger
   localStorage.setItem("ses_estado", "ShakeItDesk");
   localStorage.setItem("id_user", idus);
   localStorage.setItem("nom_user", nomus + " " + apeus);
@@ -194,7 +194,7 @@ function sesionUs(idus, nomus, apeus, tipus) {
 }
 
 function sesionSede(idsed, nitsede, nomsed, dirsede, munsedeid, munsede, depsedeid, depsede, telsede, whatsede, idensed) {
-  //debugger
+  debugger
   localStorage.setItem("id_sede", idsed);
   localStorage.setItem("nit_sede", nitsede);
   localStorage.setItem("nom_sede", nomsed);

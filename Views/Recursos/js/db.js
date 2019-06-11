@@ -17,7 +17,8 @@ var con = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "root",
-  database: "shakeitdata_loc"
+  database: "shakeitdata_loc",
+  multipleStatements: true
 });
 
 function createDatabase() {
@@ -44,7 +45,7 @@ function createDatabase() {
 
   var val = 0
   var sql = "CREATE DATABASE IF NOT EXISTS shakeitdata_loc /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci */;";
-  conCreate.query(sql, function(err, result) {
+  conCreate.query(sql, function (err, result) {
     if (err) {
       val++
     }
@@ -61,7 +62,7 @@ function createDatabase() {
   }
 }
 
-function crearEstructura() {
+function crearEstructura28() {
   debugger
   $("#msg").html('<br><center>\n\
   <div class="progress">\n\
@@ -80,7 +81,7 @@ function crearEstructura() {
     sqlFile = 'C:/SoftanSol/Shake_It/Saves/Bin/Backups/dbEstructure.sql';
   execsql.config(dbConfig)
     .exec(sql)
-    .execFile(sqlFile, function(err, results) {
+    .execFile(sqlFile, function (err, results) {
       if (err) {
         val++;
       }
@@ -97,13 +98,45 @@ function crearEstructura() {
   }
 }
 
-function descargarScript() {
+function crearEstructura() {
+  debugger
+  $("#msg").html('<br><center>\n\
+  <div class="progress">\n\
+    <div class="progress-bar w-25" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>\n\
+  </div>\n\
+  </div><br><br><h5>Creando estructura de base de datos...</h5></center>');
 
-  const http = require('http');
+  var val = 0
+  var fs = require('fs');
+
+  var val = 0
+  var sql = fs.readFileSync('C:/SoftanSol/Shake_It/Saves/Bin/Backups/dbEstructure.sql', 'utf8');
+  con.query(sql, function (err, result) {
+    if (err) {
+      val++
+      MensajeError1(err)
+    }
+  });
+
+  if (val > 0) {
+    //MensajeError1('Error al crear estructura');
+  } else {
+    $("#msg").html('<br><center>\n\
+        <div class="progress">\n\
+          <div class="progress-bar w-100" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>\n\
+        </div>\n\
+        </div><br><br><h5>Base de datos creada</h5></center>');
+    dropTables();
+  }
+}
+
+function descargarScript() {
+  debugger
+  const http = require('https');
   const fs = require('fs');
 
   const file = fs.createWriteStream("C:/SoftanSol/Shake_It/Saves/Bin/Backups/dbEstructure.sql");
-  const request = http.get("http://shakeitcol.co/Archivos/MySql/dbEstructure.sql", function(response) {
+  const request = http.get("https://shakeitcol.co/Archivos/MySql/dbEstructure.sql", function (response) {
     response.pipe(file);
   });
 
@@ -125,7 +158,7 @@ function dropTables() {
 
   var val = 0
   var sqli = "DROP TABLE IF EXISTS caja, categorias, consumo, entidadespago, estados_generales, insumos, insumos_rel, inventario, medio_pago, movimientos_concepto, movimientos_tipo, productos, sedes, unidades, usuarios, usuarios_tipo;";
-  con.query(sqli, function(err, result) {
+  con.query(sqli, function (err, result) {
     if (err) {
       val++
     }
@@ -156,10 +189,14 @@ function createRemoteBackUp() {
 
   mysqlDump({
     connection: {
-      host: '190.8.176.71',
-      user: 'shakei_userbd',
-      password: 'Usuario01',
-      database: 'shakei_shakeit_prod',
+      //host: '190.8.176.71',
+      //user: 'shakei_userbd',
+      //password: 'Usuario01',
+      //database: 'shakei_shakeit_prod',
+      host: 'localhost',
+      user: 'root',
+      password: 'root',
+      database: 'shakeitdata_des',
     },
     dump: {
       tables: ['caja', 'categorias', 'consumo', 'entidadespago', 'estados_generales', 'insumos', 'insumos_rel', 'inventario', 'medio_pago', 'movimientos_concepto', 'movimientos_tipo', 'productos', 'sedes', 'unidades', 'usuarios', 'usuarios_tipo'],
@@ -189,7 +226,7 @@ function restoreBackUp() {
     user: 'root',
     password: 'root',
     database: 'shakeitdata_loc',
-    onerror: err => alert(err.message)
+    onerror: err => MensajeError(err.message)
   }).import('C:/SoftanSol/Shake_It/Saves/Bin/Backups/backUpR.sql').then(() => {
     $("#msg").html('<center>\n\
     <div class="progress">\n\
@@ -210,7 +247,6 @@ function MensajeError(err) {
     </div><br><br><h5>Error al guardar los datos: ' + err + '</h5></center>');
   $("#btns").html("<center>\n\
    <a class='btn btn-danger btn-sm' href='javascript: dropTables()' role='button'>Reintentar</a>\n\
-   <a class='btn btn-prymary btn-sm' data-dismiss='modal' aria-label='Close' href='#' role='button'>Cerrar</a>\n\
    </center>");
 
 }
@@ -222,7 +258,6 @@ function MensajeError1(err) {
     </div><br><br><h5>Error al guardar los datos: ' + err + '</h5></center>');
   $("#btns").html("<center>\n\
    <a class='btn btn-danger btn-sm' href='javascript: createDatabase()' role='button'>Reintentar</a>\n\
-   <a class='btn btn-prymary btn-sm' data-dismiss='modal' aria-label='Close' href='#' role='button'>Cerrar</a>\n\
    </center>");
 
 }
