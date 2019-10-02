@@ -8,15 +8,15 @@ var mysql = require('mysql');
 
 var conn = mysql.createConnection({
   host: "localhost",
-  user: "root",
-  password: "root",
+  user: "admin",
+  password: "admin",
   database: "shakeitdata_des"
 });
 
 var con = mysql.createConnection({
   host: "localhost",
-  user: "root",
-  password: "root",
+  user: "admin",
+  password: "admin",
   database: "shakeitdata_loc",
   multipleStatements: true
 });
@@ -38,9 +38,13 @@ function createDatabase() {
   var mysql = require('mysql');
 
   var conCreate = mysql.createConnection({
+    //host: "localhost",
+    //user: "admin",
+    //password: "admin"
     host: "localhost",
-    user: "root",
-    password: "root"
+    user: "admin",
+    password: "admin"
+
   });
 
   var val = 0
@@ -74,8 +78,8 @@ function crearEstructura28() {
   var execsql = require('execsql'),
     dbConfig = {
       host: 'localhost',
-      user: 'root',
-      password: 'root'
+      user: 'admin',
+      password: 'admin'
     },
     sql = 'use shakeitdata_loc;',
     sqlFile = 'C:/SoftanSol/Shake_It/Saves/Bin/Backups/dbEstructure.sql';
@@ -189,14 +193,14 @@ function createRemoteBackUp() {
 
   mysqlDump({
     connection: {
-      //host: '190.8.176.71',
-      //user: 'shakei_userbd',
-      //password: 'Usuario01',
-      //database: 'shakei_shakeit_prod',
-      host: 'localhost',
-      user: 'root',
-      password: 'root',
-      database: 'shakeitdata_des',
+      host: '190.8.176.71',
+      user: 'shakei_userbd',
+      password: 'Usuario01',
+      database: 'shakei_shakeit_des',
+      //host: 'localhost',
+      //user: 'admin',
+      //password: 'admin',
+      //database: 'shakeitdata_des',
     },
     dump: {
       tables: ['caja', 'categorias', 'consumo', 'entidadespago', 'estados_generales', 'insumos', 'insumos_rel', 'inventario', 'medio_pago', 'movimientos_concepto', 'movimientos_tipo', 'productos', 'sedes', 'unidades', 'usuarios', 'usuarios_tipo'],
@@ -222,9 +226,13 @@ function restoreBackUp() {
   </div><br><br><h5>Guardando datos locales.</h5></center>');
 
   require('mysql-import').config({
+    //host: 'localhost',
+    //user: 'admin',
+    //password: 'admin',
+    //database: 'shakeitdata_loc',
     host: 'localhost',
-    user: 'root',
-    password: 'root',
+    user: 'admin',
+    password: 'admin',
     database: 'shakeitdata_loc',
     onerror: err => MensajeError(err.message)
   }).import('C:/SoftanSol/Shake_It/Saves/Bin/Backups/backUpR.sql').then(() => {
